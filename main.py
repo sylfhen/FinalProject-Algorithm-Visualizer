@@ -88,7 +88,7 @@ def merge_sort_menu():
     print("2. Sort Student Grades")
     print("3. Visualize Sorting Process")
     print("4. Back to Main Menu")
-    print("-" * 70)
+    print("-" * LINE_WIDTH)
     
     choice = input("\nEnter your choice (1-4): ").strip()
     
@@ -105,32 +105,32 @@ def merge_sort_menu():
 
 def combined_application():
     """Demonstrate using merge sort then binary search"""
-    print("\n" + "-" * 70)
+    print("\n" + "-" * LINE_WIDTH)
     print("COMBINED APPLICATION: Sort then Search")
-    print("-" * 70)
+    print("-" * LINE_WIDTH)
     print("This demonstrates the power of combining algorithms:")
     print("1. First, we'll use Merge Sort to organize unsorted data")
     print("2. Then, we'll use Binary Search for efficient lookup")
-    print("-" * 70)
+    print("-" * LINE_WIDTH)
     
     Applications.sort_then_search_demo()
 
 def performance_comparison():
     """Compare algorithm performance"""
-    print("\n" + "-" * 70)
+    print("\n" + "-" * LINE_WIDTH)
     print("ALGORITHM PERFORMANCE COMPARISON")
-    print("-" * 70)
+    print("-" * LINE_WIDTH)
     Applications.performance_dashboard()
 
 def educational_mode():
     """Step-by-step educational walkthrough"""
-    print("\n" + "-" * 70)
+    print("\n" + "-" * LINE_WIDTH)
     print("EDUCATIONAL MODE")
-    print("-" * 70)
+    print("-" * LINE_WIDTH)
     print("1. Learn Binary Search (Step-by-Step)")
     print("2. Learn Merge Sort (Step-by-Step)")
     print("3. Back to Main Menu")
-    print("-" * 70)
+    print("-" * LINE_WIDTH)
     
     choice = input("\nEnter your choice (1-3): ").strip()
     
