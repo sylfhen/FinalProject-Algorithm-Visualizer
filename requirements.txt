@@ -1,0 +1,11 @@
+# Recommended packages for Algorithm Visualization Suite
+# Install into your virtualenv with: pip install -r requirements.txt
+
+matplotlib>=3.8
+numpy>=1.26
+pytest>=7.0
+rich>=13.0
+ipython>=8.0
+
+# Optional (formatting / linting)
+black>=24.3
