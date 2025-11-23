@@ -4,6 +4,8 @@ Time Complexity: O(n log n)
 Space Complexity: O(n)
 """
 
+import sys
+
 from settings import LINE_WIDTH
 
 
@@ -85,8 +87,8 @@ class MergeSort:
         # Merge process
         while i < len(left_part) and j < len(right_part):
             self.comparisons += 1
-            
-            if left_part[i] <= right_part[j]:
+
+            if self._le(left_part[i], right_part[j]):
                 arr[k] = left_part[i]
                 i += 1
             else:
@@ -124,7 +126,11 @@ class MergeSort:
         print(f"Splitting: {arr[left:right + 1]}")
         print(f"Left half:  {arr[left:mid + 1]}")
         print(f"Right half: {arr[mid + 1:right + 1]}")
-        input("Press Enter to continue...")
+        try:
+            if sys.stdin.isatty():
+                input("Press Enter to continue...")
+        except Exception:
+            pass
     
     def _visualize_merge(self, arr, left, mid, right, left_part, right_part):
         """Visualize the merge step"""
@@ -132,7 +138,34 @@ class MergeSort:
         print("MERGE STEP")
         print(f"Merging: {left_part} + {right_part}")
         print(f"Result:  {arr[left:right + 1]}")
-        input("Press Enter to continue...")
+        try:
+            if sys.stdin.isatty():
+                input("Press Enter to continue...")
+        except Exception:
+            pass
+
+    def _le(self, a, b):
+        """Less-or-equal comparator that falls back to __lt__ if __le__ is not defined.
+
+        This preserves stability: when elements compare equal (neither a<b nor b<a)
+        we treat a <= b as True so the left element stays before the right.
+        """
+        try:
+            return a <= b
+        except TypeError:
+            # Try to use __lt__ if __le__ isn't available
+            try:
+                if a < b:
+                    return True
+            except Exception:
+                pass
+            try:
+                if b < a:
+                    return False
+            except Exception:
+                pass
+            # Neither a < b nor b < a -> treat as equal (stable: left <= right)
+            return True
     
     def get_statistics(self):
         """Return sorting statistics"""

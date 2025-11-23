@@ -4,6 +4,8 @@ Time Complexity: O(log n)
 Space Complexity: O(1) for iterative, O(log n) for recursive
 """
 
+import sys
+
 from settings import LINE_WIDTH
 
 
@@ -122,8 +124,14 @@ class BinarySearch:
             print(f"→ {arr[mid]} < {target}, search right half")
         else:
             print(f"← {arr[mid]} > {target}, search left half")
-        
-        input("Press Enter to continue...")
+
+        # Only pause for input when running interactively (tty).
+        try:
+            if sys.stdin.isatty():
+                input("Press Enter to continue...")
+        except Exception:
+            # In non-interactive environments (pytest capture) skip waiting.
+            pass
     
     def get_statistics(self):
         """Return search statistics"""
