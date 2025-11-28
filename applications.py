@@ -5,8 +5,10 @@ Real-world applications and demonstrations
 from binary_search import BinarySearch
 from merge_sort import MergeSort
 from visualizer import Visualizer
+from gui_visualizer import GUIVisualizer
 from settings import LINE_WIDTH
 import random
+import time
 
 class Applications:
     @staticmethod
@@ -471,3 +473,119 @@ class Applications:
         ms.sort(arr.copy(), visualize=True)
         stats = ms.get_statistics()
         print(f"\nCompleted: comparisons={stats.get('comparisons',0)} merges={stats.get('merges',0)} steps={stats.get('steps',0)}")
+    
+    @staticmethod
+    def gui_merge_sort_animation():
+        """Launch GUI animated merge sort visualization"""
+        print("\n" + "=" * 60)
+        print("GUI: MERGE SORT ANIMATION")
+        print("=" * 60)
+        
+        try:
+            n = int(input("How many elements (5-20)? [10]: ").strip() or 10)
+        except ValueError:
+            n = 10
+        n = max(5, min(20, n))
+        
+        mode = input("Enter numbers manually or generate randomly? (m/r) [r]: ").strip().lower()
+        if mode == 'm':
+            arr = []
+            print("Enter integer values:")
+            for i in range(n):
+                while True:
+                    try:
+                        arr.append(int(input(f"Value #{i+1}: ").strip()))
+                        break
+                    except ValueError:
+                        print("  Please enter an integer.")
+        else:
+            arr = [random.randint(1, 100) for _ in range(n)]
+        
+        print(f"\nArray: {arr}")
+        print("Opening GUI window... (close window to continue)")
+        
+        GUIVisualizer.visualize_merge_sort_animated(arr)
+    
+    @staticmethod
+    def gui_binary_search_visualization():
+        """Launch GUI binary search visualization"""
+        print("\n" + "=" * 60)
+        print("GUI: BINARY SEARCH VISUALIZATION")
+        print("=" * 60)
+        
+        try:
+            n = int(input("How many elements (5-20)? [10]: ").strip() or 10)
+        except ValueError:
+            n = 10
+        n = max(5, min(20, n))
+        
+        mode = input("Enter sorted array manually or generate randomly? (m/r) [r]: ").strip().lower()
+        if mode == 'm':
+            arr = []
+            print("Enter sorted integer values:")
+            for i in range(n):
+                while True:
+                    try:
+                        arr.append(int(input(f"Value #{i+1}: ").strip()))
+                        break
+                    except ValueError:
+                        print("  Please enter an integer.")
+        else:
+            arr = sorted([random.randint(1, 100) for _ in range(n)])
+        
+        print(f"\nSorted array: {arr}")
+        
+        try:
+            target = int(input("Enter target value to search: ").strip())
+        except ValueError:
+            print("Invalid input.")
+            return
+        
+        print("Opening GUI window... (close window to continue)")
+        GUIVisualizer.visualize_binary_search_steps(arr, target)
+    
+    @staticmethod
+    def gui_complexity_comparison():
+        """Show algorithm complexity comparison chart"""
+        print("\n" + "=" * 60)
+        print("GUI: ALGORITHM COMPLEXITY COMPARISON")
+        print("=" * 60)
+        print("Opening complexity comparison chart...")
+        print("This shows how different algorithms scale with input size.")
+        
+        GUIVisualizer.visualize_complexity_comparison()
+    
+    @staticmethod
+    def gui_performance_benchmark():
+        """Run performance benchmark and show GUI graph"""
+        print("\n" + "=" * 60)
+        print("GUI: PERFORMANCE BENCHMARK")
+        print("=" * 60)
+        print("Running performance tests...")
+        
+        sizes = [10, 50, 100, 500, 1000, 5000]
+        binary_times = []
+        merge_times = []
+        
+        for size in sizes:
+            arr = sorted([random.randint(1, 10000) for _ in range(size)])
+            target = arr[size // 2]
+            
+            # Binary search timing
+            bs = BinarySearch()
+            start = time.perf_counter()
+            for _ in range(100):
+                bs.search_iterative(arr, target, False)
+            binary_times.append((time.perf_counter() - start) / 100)
+            
+            # Merge sort timing
+            arr_unsorted = [random.randint(1, 10000) for _ in range(size)]
+            ms = MergeSort()
+            start = time.perf_counter()
+            ms.sort(arr_unsorted.copy(), False)
+            merge_times.append(time.perf_counter() - start)
+            
+            print(f"  Size {size:5d}: Binary Search {binary_times[-1]:.6f}s, Merge Sort {merge_times[-1]:.6f}s")
+        
+        print("\nOpening performance comparison graph...")
+        GUIVisualizer.plot_performance_comparison(sizes, binary_times, merge_times)

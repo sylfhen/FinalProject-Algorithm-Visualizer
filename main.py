@@ -33,10 +33,11 @@ def main_menu():
         print("3. Combined Application: Search in Sorted Data")
         print("4. Algorithm Performance Comparison")
         print("5. Educational Mode (Step-by-Step)")
-        print("6. Exit")
+        print("6. GUI Visualizations (Matplotlib)")
+        print("7. Exit")
         print("=" * LINE_WIDTH)
         
-        choice = input("\nEnter your choice (1-6): ").strip()
+        choice = input("\nEnter your choice (1-7): ").strip()
         
         if choice == '1':
             binary_search_menu()
@@ -49,6 +50,8 @@ def main_menu():
         elif choice == '5':
             educational_mode()
         elif choice == '6':
+            gui_menu()
+        elif choice == '7':
             print("\nThank you for using the Algorithm Visualization Suite!")
             print("Keep practicing divide and conquer! 🚀\n")
             break
@@ -139,6 +142,33 @@ def educational_mode():
     elif choice == '2':
         Applications.teach_merge_sort()
     elif choice == '3':
+        return
+    else:
+        print("\n❌ Invalid choice.")
+
+def gui_menu():
+    """Submenu for GUI visualizations"""
+    print("\n" + "-" * LINE_WIDTH)
+    print("GUI VISUALIZATIONS (MATPLOTLIB)")
+    print("-" * LINE_WIDTH)
+    print("1. Animated Merge Sort")
+    print("2. Binary Search Steps")
+    print("3. Algorithm Complexity Comparison")
+    print("4. Performance Benchmark")
+    print("5. Back to Main Menu")
+    print("-" * LINE_WIDTH)
+    
+    choice = input("\nEnter your choice (1-5): ").strip()
+    
+    if choice == '1':
+        Applications.gui_merge_sort_animation()
+    elif choice == '2':
+        Applications.gui_binary_search_visualization()
+    elif choice == '3':
+        Applications.gui_complexity_comparison()
+    elif choice == '4':
+        Applications.gui_performance_benchmark()
+    elif choice == '5':
         return
     else:
         print("\n❌ Invalid choice.")
