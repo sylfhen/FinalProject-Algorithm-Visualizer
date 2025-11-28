@@ -1,5 +1,5 @@
 """
-Comprehensive and Organized Unit Tests for Binary Search and Merge Sort.
+Unit Tests for Binary Search and Merge Sort.
 """
 
 import pytest
