@@ -281,7 +281,10 @@ class Applications:
         ms = MergeSort()
         sorted_arr = ms.sort(arr.copy(), visualize=True)
 
-        print("\nSorted array:", sorted_arr)
+        # Display final sorted array in yellow
+        YELLOW = '\033[93m'
+        RESET = '\033[0m'
+        print(f"\n{YELLOW}Sorted array: {sorted_arr}{RESET}")
         Visualizer.print_array_bar_chart(sorted_arr, title="After: Sorted Array")
 
         stats = ms.get_statistics()

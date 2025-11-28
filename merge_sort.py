@@ -120,12 +120,26 @@ class MergeSort:
         })
     
     def _visualize_divide(self, arr, left, mid, right):
-        """Visualize the divide step"""
+        """Visualize the divide step with colored output"""
+        # ANSI color codes
+        RED = '\033[91m'
+        GREEN = '\033[92m'
+        RESET = '\033[0m'
+        
         print("\n" + "-" * LINE_WIDTH)
         print("DIVIDE STEP")
-        print(f"Splitting: {arr[left:right + 1]}")
-        print(f"Left half:  {arr[left:mid + 1]}")
-        print(f"Right half: {arr[mid + 1:right + 1]}")
+        
+        # Show only the section being divided with colors
+        section_display = []
+        for i in range(left, right + 1):
+            if i <= mid:
+                section_display.append(f"{RED}{arr[i]}{RESET}")
+            else:
+                section_display.append(f"{GREEN}{arr[i]}{RESET}")
+        
+        print(f"Splitting: [{', '.join(section_display)}]")
+        print(f"{RED}Left half:  {arr[left:mid + 1]}{RESET}")
+        print(f"{GREEN}Right half: {arr[mid + 1:right + 1]}{RESET}")
         try:
             if sys.stdin.isatty():
                 input("Press Enter to continue...")
@@ -133,11 +147,21 @@ class MergeSort:
             pass
     
     def _visualize_merge(self, arr, left, mid, right, left_part, right_part):
-        """Visualize the merge step"""
+        """Visualize the merge step with colored output"""
+        # ANSI color codes
+        RED = '\033[91m'
+        GREEN = '\033[92m'
+        YELLOW = '\033[93m'
+        RESET = '\033[0m'
+        
         print("\n" + "-" * LINE_WIDTH)
         print("MERGE STEP")
-        print(f"Merging: {left_part} + {right_part}")
-        print(f"Result:  {arr[left:right + 1]}")
+        print(f"{RED}Left:  {left_part}{RESET}")
+        print(f"{GREEN}Right: {right_part}{RESET}")
+        
+        # Show the merged result in yellow
+        merged_result = arr[left:right + 1]
+        print(f"{YELLOW}Merged: {merged_result}{RESET}")
         try:
             if sys.stdin.isatty():
                 input("Press Enter to continue...")

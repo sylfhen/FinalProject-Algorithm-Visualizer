@@ -158,9 +158,12 @@ class BinarySearch:
             guess = (maximum + minimum) // 2
             attempts += 1
             
+            GREEN = '\033[92m'
+            RESET = '\033[0m'
+            
             print(f"\nAttempt #{attempts}")
             print(f"Current range: [{minimum}, {maximum}]")
-            print(f"My guess is: {guess}")
+            print(f"{GREEN}My guess is: {guess}{RESET}")
             print("-" * LINE_WIDTH)
             
             response = input("Is it (c)orrect, (h)igher, or (l)ower? ").strip().lower()
