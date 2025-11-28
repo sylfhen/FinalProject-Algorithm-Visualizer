@@ -138,8 +138,15 @@ class MergeSort:
                 section_display.append(f"{GREEN}{arr[i]}{RESET}")
         
         print(f"Splitting: [{', '.join(section_display)}]")
-        print(f"{RED}Left half:  {arr[left:mid + 1]}{RESET}")
-        print(f"{GREEN}Right half: {arr[mid + 1:right + 1]}{RESET}")
+        
+        # Display left half on left side and right half on right side
+        left_str = f"{RED}{arr[left:mid + 1]}{RESET}"
+        right_str = f"{GREEN}{arr[mid + 1:right + 1]}{RESET}"
+        
+        # Calculate spacing to position halves on left and right
+        max_half_width = LINE_WIDTH // 2 - 5
+        print(f"{left_str:<{max_half_width}}{right_str:>{max_half_width}}")
+        
         try:
             if sys.stdin.isatty():
                 input("Press Enter to continue...")
