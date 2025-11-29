@@ -306,7 +306,7 @@ class Applications:
             n = int(input("How many elements? (5-50) [15]: ").strip() or 15)
         except ValueError:
             n = 15
-        n = max(5, min(50, n))
+        n = max(5, min(20, n))
 
         arr_mode = input("Enter array manually or generate randomly? (m/r) [r]: ").strip().lower()
         if arr_mode == 'm':

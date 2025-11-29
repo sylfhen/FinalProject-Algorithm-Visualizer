@@ -19,7 +19,7 @@ def print_header():
     print("=" * LINE_WIDTH)
     print(" " * 15 + "ALGORITHM VISUALIZATION SUITE")
     print(" " * 10 + "Binary Search & Merge Sort Demonstration")
-    print("=" * 70)
+    #print("=" * 70)
     print()
 
 def main_menu():
